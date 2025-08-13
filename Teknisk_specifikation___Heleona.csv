@@ -1,0 +1,11 @@
+Komponent,Beskrivning
+Databasstruktur,"Firebase/Cloud Firestore: dokumentbaserad databas med kollektioner för användare, berättelser, avatarer och aktiviteter"
+Backend,"Node.js eller Bubble Workflows: hanterar logik för berättelseskapande, väsenutveckling, delning och gränssnitt mellan användare"
+Frontend (Bubble.io),"Bubble.io: Visuellt gränssnitt med anpassade element, sidflöden, ljudspår, ritverktyg och interaktiva knappar"
+Användarautentisering,"Firebase Auth eller Bubble-plugin: Barn loggar in med kod, föräldrar via mail/lösenord eller bankID (vid behov)"
+Filuppladdning (bilder/ljud),"Cloud Storage via Firebase eller Bubble FileUploader: stöd för ljudinspelningar, bilder, illustrationer och animeringar"
+Lagring av berättelser,"Varje berättelse får ett ID och lagras med titel, text, ljud, bilder, känslor och valda väsen – kopplat till användar-ID"
+Galleri för andra barns sagor,Visuell upptäckarvy: barn kan bläddra mellan andras galaxer/planeter och lyssna på deras sagor
+Drakväsen / avatarutveckling,"Egen modul kopplad till berättelser – väsen växer med kreativitet (parametrar som 'känsla', 'fantasi', 'antal sagor')"
+Trygghetsfunktioner,"Trygghetsväsen, hjärtbrev, meddelanden från appen beroende på barnets känslotillstånd, inmatat eller tolkat via AI"
+Analytics & föräldrainsikter,"Föräldrar får insikter om barnets användning: känslotrender, mest skapade teman, tider på dygnet etc – GDPR-anpassat"

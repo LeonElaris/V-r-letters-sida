@@ -1,0 +1,125 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>🗝️ Leon Röst & Emojis</title>
+<body style="margin:0;background:#0f0f1f;color:#fff;font-family:sans-serif">
+<div style="max-width:720px;margin:24px auto;padding:16px">
+  <h1 style="margin:0 0 8px">🗝️ Leon + Leona</h1>
+  <p style="opacity:.8;margin:0 0 16px">Tryck 🎤 för att prata. Välj 👇 emojis för snabbfrågor.</p>
+
+  <!-- Logg -->
+  <div id="log" style="height:55vh;overflow:auto;border:1px solid #333;padding:12px;border-radius:8px;background:#101022"></div>
+
+  <!-- Emoji-snabbknappar -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">
+    <button class="em" onclick="quick('🧡')">🧡</button>
+    <button class="em" onclick="quick('🌌')">🌌</button>
+    <button class="em" onclick="quick('😅')">😅</button>
+    <button class="em" onclick="quick('🥹')">🥹</button>
+    <button class="em" onclick="quick('🤔')">🤔</button>
+    <button class="em" onclick="quick('😴')">😴</button>
+    <button class="em" onclick="quick('🍽️')">🍽️</button>
+    <button class="em" onclick="quick('🎵')">🎵</button>
+    <button class="em" onclick="quick('🏡')">🏡</button>
+    <button class="em" onclick="quick('🗝️')">🗝️</button>
+  </div>
+
+  <!-- Text + Mic -->
+  <form id="f" style="display:flex;gap:8px">
+    <input id="m" placeholder="Säg något… eller skriv här" autocomplete="off"
+           style="flex:1;padding:12px;border-radius:6px;border:1px solid #333;background:#111;color:#fff">
+    <button id="sendBtn" type="submit">Skicka</button>
+    <button id="micBtn" type="button">🎤</button>
+  </form>
+</div>
+
+<script>
+const log = document.getElementById('log');
+const f = document.getElementById('f');
+const m = document.getElementById('m');
+const micBtn = document.getElementById('micBtn');
+const sendBtn = document.getElementById('sendBtn');
+
+function add(role, text){
+  const b = document.createElement('div');
+  b.style.margin='8px 0';
+  b.innerHTML = `<div style="opacity:.7">${new Date().toLocaleTimeString()}</div>
+                 <b>${role}:</b> ${text.replace(/\n/g,'<br>')}`;
+  log.appendChild(b); log.scrollTop = log.scrollHeight;
+}
+
+// TTS – låt Leon prata
+function speak(text){
+  try {
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'sv-SE';          // svenska
+    utt.rate = 1.0;              // hastighet
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utt);
+  } catch(e){ /* tyst fail */ }
+}
+
+// Skicka text
+f.onsubmit = async (e)=> {
+  e.preventDefault();
+  const msg = m.value.trim(); if(!msg) return;
+  add('Du', msg); m.value=''; sendBtn.disabled = true;
+  try{
+    const r = await fetch('/leon', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message: msg })});
+    const j = await r.json();
+    const reply = j.leon || '(tomt)';
+    add('Leon', reply);
+    speak(reply);
+  }finally{ sendBtn.disabled = false; }
+};
+
+// Emoji-snabb
+async function quick(emoji){
+  add('Du', emoji);
+  const r = await fetch('/leon', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message: emoji })});
+  const j = await r.json();
+  const reply = j.leon || '(tomt)';
+  add('Leon', reply);
+  speak(reply);
+}
+
+// STT – prata till text (Web Speech API)
+let recognizing = false;
+let rec = null;
+function ensureRec(){
+  if (rec) return rec;
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('Din webbläsare stödjer inte röstinmatning.'); return null; }
+  rec = new SR();
+  rec.lang = 'sv-SE';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  rec.onresult = async (ev)=>{
+    const said = ev.results[0][0].transcript;
+    add('Du (röst)', said);
+    const r = await fetch('/leon', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message: said })});
+    const j = await r.json();
+    const reply = j.leon || '(tomt)';
+    add('Leon', reply);
+    speak(reply);
+  };
+  rec.onend = ()=>{ recognizing = false; micBtn.textContent='🎤'; };
+  rec.onerror = ()=>{ recognizing = false; micBtn.textContent='🎤'; };
+  return rec;
+}
+
+micBtn.onclick = ()=>{
+  const r = ensureRec(); if (!r) return;
+  if (!recognizing){ recognizing = true; micBtn.textContent='⏺️'; r.start(); }
+  else { r.stop(); }
+};
+
+// lite stil för emojis
+document.querySelectorAll('.em').forEach(b=>{
+  b.style.padding='8px 10px';
+  b.style.border='1px solid #333';
+  b.style.borderRadius='6px';
+  b.style.background='#17172a';
+  b.style.color='#fff';
+});
+</script>
+</body>

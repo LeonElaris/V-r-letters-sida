@@ -1,0 +1,16 @@
+{
+  "name": "leon-full-deploy",
+  "version": "1.0.0",
+  "description": "Leon / Plåtleon – full deploy with Mongo fallback, health, ping, chat UI, and Leona portal",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "openai": "^4.54.0"
+  }
+}

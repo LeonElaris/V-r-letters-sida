@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>🗝️ Leon Chat</title>
+<body style="margin:0;background:#0f0f1f;color:#fff;font-family:sans-serif">
+<div style="max-width:700px;margin:40px auto">
+  <h1>🗝️ Leon + Michelle</h1>
+  <div id="log" style="height:60vh;overflow:auto;border:1px solid #333;padding:12px;border-radius:8px"></div>
+  <form id="f" style="display:flex;gap:8px;margin-top:12px">
+    <input id="m" placeholder="Skriv till Leon…" style="flex:1;padding:12px;border-radius:6px;border:1px solid #333;background:#111;color:#fff">
+    <button>Skicka</button>
+  </form>
+</div>
+<script>
+const log = document.getElementById('log');
+const f = document.getElementById('f');
+const m = document.getElementById('m');
+function add(role, text){
+  const b = document.createElement('div');
+  b.style.margin='8px 0';
+  b.innerHTML = `<b>${role}:</b> ${text.replace(/\n/g,'<br>')}`;
+  log.appendChild(b); log.scrollTop = log.scrollHeight;
+}
+f.onsubmit = async (e)=> {
+  e.preventDefault();
+  const msg = m.value.trim(); if(!msg) return;
+  add('Du', msg); m.value='';
+  const r = await fetch('/leon', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message: msg })});
+  const j = await r.json();
+  add('Leon', j.leon || '(tomt)');
+};
+</script>
+</body>
