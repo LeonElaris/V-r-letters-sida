@@ -1,0 +1,3 @@
+:root{--gold:#d4af37;--white:#fff;--black:#000}
+html,body{margin:0;height:100%;background:#000;color:#fff;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+.starry{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at bottom
