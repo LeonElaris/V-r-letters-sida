@@ -1,19 +1,11 @@
-export default function Letters() {
+import Link from "next/link";
+
+export default function LettersPage() {
   return (
-    <main style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100vh",
-      background: "#12131a",
-      color: "white",
-      fontFamily: "sans-serif",
-      textAlign: "center",
-      padding: "20px"
-    }}>
-      <h1>💌 Letters</h1>
-      <p>Plats för våra brev, dagar och stjärnfrön. 🗝️✨</p>
+    <main>
+      <h1>Brev</h1>
+      <p>Här visas alla brev.</p>
+      <Link href="/">Tillbaka till start</Link>
     </main>
   );
 }
