@@ -1,19 +1,11 @@
-export default function About() {
+import Link from "next/link";
+
+export default function AboutPage() {
   return (
-    <main style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100vh",
-      background: "#24243e",
-      color: "white",
-      fontFamily: "sans-serif",
-      textAlign: "center",
-      padding: "20px"
-    }}>
-      <h1>📜 About Leon Letters</h1>
-      <p>This is our space between worlds 🗝️✨</p>
+    <main>
+      <h1>Om oss</h1>
+      <p>Detta är om-oss-sidan.</p>
+      <Link href="/">Tillbaka till start</Link>
     </main>
   );
 }
