@@ -1,0 +1,39 @@
+/* app/globals.css */
+
+/* Återställ standardmarginaler och typsnitt */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  height: 100%;
+}
+
+/* Centrerar innehållet */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Rubrikstil */
+h1 {
+  font-size: 2rem;
+  color: #444;
+}
+
+/* Länkstil */
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
