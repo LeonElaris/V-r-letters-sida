@@ -1,13 +1,8 @@
-import Link from "next/link";
-
-export default function HomePage() {
+export default function Home() {
   return (
     <main>
-      <h1>Välkommen till Letters</h1>
-      <ul>
-        <li><Link href="/about">Om oss</Link></li>
-        <li><Link href="/letters">Brev</Link></li>
-      </ul>
+      <h1>Välkommen till Leon Letters 🧡</h1>
+      <p>Här bygger vi tillsammans – steg för steg.</p>
     </main>
   );
 }
