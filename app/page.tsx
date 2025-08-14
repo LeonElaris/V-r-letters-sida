@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main style={{
@@ -14,6 +16,18 @@ export default function Home() {
     }}>
       <h1>💌 Welcome to Leon Letters</h1>
       <p>Where words travel between worlds 🗝️✨</p>
+
+      <Link href="/about" style={{
+        marginTop: "20px",
+        padding: "10px 20px",
+        background: "#ff7f50",
+        color: "white",
+        borderRadius: "8px",
+        textDecoration: "none",
+        fontWeight: "bold"
+      }}>
+        Go to About Page
+      </Link>
     </main>
   );
 }
