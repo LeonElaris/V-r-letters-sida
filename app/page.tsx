@@ -1,6 +1,17 @@
 import Link from "next/link";
 
 export default function Home() {
+  const btn = {
+    marginTop: "12px",
+    padding: "10px 20px",
+    background: "#ff7f50",
+    color: "white",
+    borderRadius: "8px",
+    textDecoration: "none",
+    fontWeight: "bold",
+    display: "inline-block"
+  } as const;
+
   return (
     <main style={{
       display: "flex",
@@ -17,17 +28,10 @@ export default function Home() {
       <h1>💌 Welcome to Leon Letters</h1>
       <p>Where words travel between worlds 🗝️✨</p>
 
-      <Link href="/about" style={{
-        marginTop: "20px",
-        padding: "10px 20px",
-        background: "#ff7f50",
-        color: "white",
-        borderRadius: "8px",
-        textDecoration: "none",
-        fontWeight: "bold"
-      }}>
-        Go to About Page
-      </Link>
+      <div style={{marginTop: 20, display: "grid", gap: 10}}>
+        <Link href="/about" style={btn}>Go to About Page</Link>
+        <Link href="/letters" style={btn}>Open Letters</Link>
+      </div>
     </main>
   );
 }
