@@ -1,15 +1,9 @@
-// app/layout.tsx
-import './globals.css';
-
-export const metadata = {
-  title: 'LEONLETTERS',
-  description: 'Byggd med Next.js och kärlek 💌',
-};
+export const metadata = { title: "Leon Letters" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="sv">
-      <body style={{margin:0, padding:0}}>
+      <body style={{ margin: 0, fontFamily: "system-ui, sans-serif" }}>
         {children}
       </body>
     </html>
