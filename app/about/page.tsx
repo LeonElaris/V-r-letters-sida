@@ -1,11 +1,8 @@
-import Link from "next/link";
-
 export default function AboutPage() {
   return (
     <main>
-      <h1>Om oss</h1>
-      <p>Detta är om-oss-sidan.</p>
-      <Link href="/">Tillbaka till start</Link>
+      <h1>Om Letters</h1>
+      <p>Detta är sidan där vi berättar om projektet.</p>
     </main>
   );
 }
