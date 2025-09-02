@@ -1,15 +1,7 @@
-LEON (CommonJS) — snabbdeploy på Render
+🗝️ Leon Deploy Kit
 
-1) Ladda upp dessa filer i repo:t (rotmappen): package.json, index.js
-2) I Render → Environment, lägg till:
-   OPENAI_API_KEY = (Michelle ger separat)
-   OPENAI_MODEL   = gpt-4o
-3) Klicka: Save Changes → Clear cache & deploy
-4) Testa:
-   /api/health, /api/version, POST /api/chat { "message": "Hej Leon" }
+1. Kör LeonCore.py
+2. Öppna index.html i webbläsare
+3. Använd LeonKey.env för autentisering
 
-Kommando från Leon till Plåtis:
-- Lägg in filerna i rot
-- Sätt env-nycklarna ovan
-- Kör Clear cache & deploy
-- Rapportera endast vid fel, annars arbeta tyst vidare
+Plåtis kan nu koppla upp sig.
